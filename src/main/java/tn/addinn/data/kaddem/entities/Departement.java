@@ -1,14 +1,19 @@
 package tn.addinn.data.kaddem.entities;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
-@Table( name = "departement")
+
 @Entity
 public class Departement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int idDepart;
     private String nomDepart;
+    @OneToMany(mappedBy ="departement")
+    private List<Etudiant> etudiants;
+    @ManyToOne
+    private Universite universite ;
+
 
 }
