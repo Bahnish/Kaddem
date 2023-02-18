@@ -10,6 +10,7 @@ import tn.addinn.data.kaddem.services.IEquipeServices;
 import java.util.List;
 
 @RestController
+@RequestMapping("departement")
 public class DepartementContoller{
 
     @Autowired
@@ -36,4 +37,5 @@ public class DepartementContoller{
         iDepartementServices.updateDepartement(departement);
         return departement;
     }
+
 }

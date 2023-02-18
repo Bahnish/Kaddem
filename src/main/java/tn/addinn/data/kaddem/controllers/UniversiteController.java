@@ -10,6 +10,7 @@ import tn.addinn.data.kaddem.services.IUniversiteServices;
 import java.util.List;
 
 @RestController
+@RequestMapping("universite")
 public class UniversiteController {
 
     @Autowired

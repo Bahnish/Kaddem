@@ -10,6 +10,7 @@ import tn.addinn.data.kaddem.services.IDetailEquipeServices;
 import java.util.List;
 
 @RestController
+@RequestMapping("detailequipe")
 public class DetailEquipeController{
 
     @Autowired

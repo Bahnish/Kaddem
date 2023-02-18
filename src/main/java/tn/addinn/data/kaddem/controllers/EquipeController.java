@@ -9,6 +9,7 @@ import tn.addinn.data.kaddem.services.IEquipeServices;
 import java.util.List;
 
 @RestController
+@RequestMapping("equipe")
 public class EquipeController {
 
     @Autowired

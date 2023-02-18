@@ -12,31 +12,37 @@ public class IContratServiceImp implements IContratServices {
     private final ContratRepository contratRepository;
 
     public IContratServiceImp(ContratRepository contratRepository) {
+
         this.contratRepository = contratRepository;
     }
 
     @Override
     public void ajouterContrat(Contrat c) {
+
         contratRepository.save(c);
     }
 
     @Override
     public void updateContrat(Contrat c) {
+
         contratRepository.save(c);
     }
 
     @Override
     public List<Contrat> getAllContrat() {
+
         return contratRepository.findAll();
     }
 
     @Override
     public Contrat getByIdContrat(Integer id) {
+
         return contratRepository.findById(id).orElse(null);
     }
 
     @Override
     public void deleteContrat(Integer id) {
+
         contratRepository.deleteById(id);
     }
 }

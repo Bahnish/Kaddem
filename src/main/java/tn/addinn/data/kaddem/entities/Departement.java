@@ -1,9 +1,16 @@
 package tn.addinn.data.kaddem.entities;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Departement {
 
     @Id

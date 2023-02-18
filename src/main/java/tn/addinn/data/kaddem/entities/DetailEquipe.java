@@ -1,9 +1,16 @@
 package tn.addinn.data.kaddem.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Table( name = "detailEquipe")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class DetailEquipe {
 
     @Id

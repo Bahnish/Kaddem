@@ -10,13 +10,11 @@ import tn.addinn.data.kaddem.services.IEtudiantServices;
 import java.util.List;
 
 @RestController
+@RequestMapping("etudiant")
 public class EtudiantController {
     @Autowired
     IEtudiantServices iEtudiantServices;
-    @GetMapping("/sayHello")
-    public String sayHello(){
-        return "hello";
-    }
+
     @GetMapping("/getAllEtudiant")
     public List<Etudiant> getAllEtudiant(){
         return iEtudiantServices.getAllEtudiant();
@@ -38,4 +36,11 @@ public class EtudiantController {
         iEtudiantServices.updateEtudiant(etudiant);
         return etudiant;
     }
+
+    @PutMapping("{etudiantId}/{departementId}")
+    public void assignEtudiantToDepartement( @PathVariable Integer etudiantId, @PathVariable Integer departementId){
+        iEtudiantServices.assignEtudiantToDepartement(etudiantId,departementId);
+    }
+
+
 }

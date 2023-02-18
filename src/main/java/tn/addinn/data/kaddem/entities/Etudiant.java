@@ -1,10 +1,17 @@
 package tn.addinn.data.kaddem.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Table( name = "etudiants")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Etudiant {
 
 
