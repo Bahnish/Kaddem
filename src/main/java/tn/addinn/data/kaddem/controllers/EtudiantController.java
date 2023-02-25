@@ -42,14 +42,21 @@ public class EtudiantController {
         iEtudiantServices.assignEtudiantToDepartement(etudiantId,departementId);
     }
 
-    @PostMapping"/ADDEtudiant"
-    public void ADDEtudiant (@RequestBody Etudiant etudiant){iEtudiantServices.ajouterEtudiant(etudiant); }
+    @PostMapping ("/AddEtudiant")
+    public void ADDEtudiant(@RequestBody Etudiant etudiant) {
+        iEtudiantServices.ajouterEtudiant(etudiant);
+    }
 
-    @PostMapping"/"
-    public Etudiant addAndAssignEtudiantToEquipeAndContract (@RequestBody Etudiant e,@RequestBody Integer idContrat,@RequestBody Integer idEquipe){
-
+    @PostMapping("/{idContrat}/{idEquipe}")
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(@RequestBody Etudiant e, @PathVariable Integer idContrat, @PathVariable Integer idEquipe) {
+        return iEtudiantServices.addAndAssignEtudiantToEquipeAndContract(e,idContrat,idEquipe);
 
     }
+
+
+
+
+
 
 
 
