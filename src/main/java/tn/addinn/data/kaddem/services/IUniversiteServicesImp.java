@@ -2,6 +2,7 @@ package tn.addinn.data.kaddem.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tn.addinn.data.kaddem.entities.Departement;
 import tn.addinn.data.kaddem.entities.Universite;
 import tn.addinn.data.kaddem.repositories.DepartementRepository;
@@ -45,12 +46,12 @@ public class IUniversiteServicesImp implements IUniversiteServices{
     public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement){
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
         Departement departement = departementRepository.findById(idDepartement).orElse(null);
-        if (universite == null || departement == null) {
-            throw new IllegalArgumentException("L'université ou le département n'existe pas");
-        }
 
-        departement.setUniversite(universite);
-        departementRepository.save(departement);
+        Assert.notNull(universite, "universite must not be null.") ;
+        Assert.notNull(departement, "departement must not be null.") ;
+
+        universite.getDepartement().add(departement);
+        universiteRepository.save(universite);
 
 
     }
