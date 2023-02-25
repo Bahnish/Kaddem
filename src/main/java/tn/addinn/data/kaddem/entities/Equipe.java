@@ -1,4 +1,5 @@
 package tn.addinn.data.kaddem.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Equipe {
     @OneToOne
     private DetailEquipe detailEquipe;
     @ManyToMany
+    @JsonIgnore
     private List<Etudiant> etudiants;
 
 }

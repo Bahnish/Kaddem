@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.addinn.data.kaddem.entities.Contrat;
+import tn.addinn.data.kaddem.entities.Etudiant;
 import tn.addinn.data.kaddem.services.IContratServices;
+import tn.addinn.data.kaddem.services.IEtudiantServices;
 
 import java.util.List;
 
@@ -14,6 +16,9 @@ import java.util.List;
 public class ContratController {
 
     private final IContratServices iContratServices;
+
+    @Autowired
+    private IEtudiantServices iEtudiantServices;
 
     @GetMapping()
     public List<Contrat> getAllContrat(){
@@ -36,4 +41,5 @@ public class ContratController {
         iContratServices.updateContrat(contrat);
         return contrat;
     }
+
 }

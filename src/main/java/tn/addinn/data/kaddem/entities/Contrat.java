@@ -1,5 +1,6 @@
 package tn.addinn.data.kaddem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Contrat {
 
     @Enumerated(EnumType.STRING)
     private Specialite specialite;
+
     @ManyToOne
     private Etudiant etudiant;
 

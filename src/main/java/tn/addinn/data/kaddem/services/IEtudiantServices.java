@@ -14,4 +14,6 @@ public interface IEtudiantServices {
 
     abstract void assignEtudiantToDepartement(Integer etudiantId, Integer
             departementId) ;
+
+     Etudiant  addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
 }

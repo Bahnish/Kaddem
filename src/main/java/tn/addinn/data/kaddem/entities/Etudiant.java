@@ -1,5 +1,6 @@
 package tn.addinn.data.kaddem.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Etudiant {
     private List<Contrat> contrats;
 
     @ManyToMany(mappedBy = "etudiants")
+    @JsonIgnore
     private List<Equipe> equipes;
 
 

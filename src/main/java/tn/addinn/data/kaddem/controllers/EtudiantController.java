@@ -19,7 +19,7 @@ public class EtudiantController {
     public List<Etudiant> getAllEtudiant(){
         return iEtudiantServices.getAllEtudiant();
     }
-    @GetMapping("/getByIdEtudiant/{id}")
+    @GetMapping("/{id}")
     public Etudiant getByIdEtudiant(@PathVariable int id){
         return iEtudiantServices.getByIdEtudiant(id);
     }
@@ -41,6 +41,19 @@ public class EtudiantController {
     public void assignEtudiantToDepartement( @PathVariable Integer etudiantId, @PathVariable Integer departementId){
         iEtudiantServices.assignEtudiantToDepartement(etudiantId,departementId);
     }
+
+    @PostMapping"/ADDEtudiant"
+    public void ADDEtudiant (@RequestBody Etudiant etudiant){iEtudiantServices.ajouterEtudiant(etudiant); }
+
+    @PostMapping"/"
+    public Etudiant addAndAssignEtudiantToEquipeAndContract (@RequestBody Etudiant e,@RequestBody Integer idContrat,@RequestBody Integer idEquipe){
+
+
+    }
+
+
+
+
 
 
 }
