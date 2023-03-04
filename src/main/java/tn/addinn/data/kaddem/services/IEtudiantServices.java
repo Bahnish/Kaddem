@@ -4,6 +4,7 @@ import tn.addinn.data.kaddem.entities.Etudiant;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.Optional;
 
 public interface IEtudiantServices {
     void ajouterEtudiant(Etudiant e);
@@ -12,8 +13,12 @@ public interface IEtudiantServices {
     Etudiant getByIdEtudiant(Integer id);
     void deleteEtudiant(Integer id);
 
-    abstract void assignEtudiantToDepartement(Integer etudiantId, Integer
+
+
+     void assignEtudiantToDepartement(Integer etudiantId, Integer
             departementId) ;
 
      Etudiant  addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat,Integer idEquipe);
+
+
 }

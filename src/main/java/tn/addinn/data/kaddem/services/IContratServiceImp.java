@@ -1,20 +1,25 @@
 package tn.addinn.data.kaddem.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tn.addinn.data.kaddem.entities.Contrat;
+import tn.addinn.data.kaddem.entities.Etudiant;
 import tn.addinn.data.kaddem.repositories.ContratRepository;
+import tn.addinn.data.kaddem.repositories.EquipeRepository;
+import tn.addinn.data.kaddem.repositories.EtudiantRepository;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class IContratServiceImp implements IContratServices {
 
     private final ContratRepository contratRepository;
 
-    public IContratServiceImp(ContratRepository contratRepository) {
+    private  final EtudiantRepository etudiantRepository;
 
-        this.contratRepository = contratRepository;
-    }
+
 
     @Override
     public void ajouterContrat(Contrat c) {
@@ -23,9 +28,9 @@ public class IContratServiceImp implements IContratServices {
     }
 
     @Override
-    public void updateContrat(Contrat c) {
+    public Contrat updateContrat(Contrat c) {
 
-        contratRepository.save(c);
+       return contratRepository.save(c);
     }
 
     @Override
@@ -45,4 +50,16 @@ public class IContratServiceImp implements IContratServices {
 
         contratRepository.deleteById(id);
     }
+
+    public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE){
+        Etudiant e = etudiantRepository.getByNomEAndPrenomE(nomE , prenomE).orElse(null);
+        Assert.notNull(e, "etudiant must not be null");
+        if (e.getContrats().size() > 5){
+            System.out.println("vous avez depassé le nombre max de contrat");
+            return null ;
+        };
+        ce.setEtudiant(e);
+        return updateContrat(ce);
+    }
+
 }

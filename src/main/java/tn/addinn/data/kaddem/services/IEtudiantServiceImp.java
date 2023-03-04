@@ -15,6 +15,7 @@ import tn.addinn.data.kaddem.repositories.EtudiantRepository;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IEtudiantServiceImp implements IEtudiantServices {
@@ -56,6 +57,9 @@ public class IEtudiantServiceImp implements IEtudiantServices {
         etudiantRepository.deleteById(id);
     }
 
+
+
+
     @Override
     public void assignEtudiantToDepartement(Integer etudiantId, Integer departementId){
         Etudiant etudiant = etudiantRepository.findById(etudiantId).orElse(null);
@@ -77,6 +81,8 @@ public class IEtudiantServiceImp implements IEtudiantServices {
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
         Assert.notNull(contrat, "univ must not be null");
         Assert.notNull(equipe, "equi must not be null");
+        Assert.notNull(e, "etudiant must not be null");
+
         List<Equipe> equipes = new ArrayList<>();
         equipes.add(equipe);
         e.setEquipes(equipes);
