@@ -8,6 +8,7 @@ import tn.addinn.data.kaddem.entities.Universite;
 import tn.addinn.data.kaddem.repositories.DepartementRepository;
 import tn.addinn.data.kaddem.repositories.UniversiteRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -42,6 +43,7 @@ public class IUniversiteServicesImp implements IUniversiteServices{
         universiteRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement){
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
@@ -51,8 +53,11 @@ public class IUniversiteServicesImp implements IUniversiteServices{
         Assert.notNull(departement, "departement must not be null.") ;
 
         universite.getDepartement().add(departement);
-        universiteRepository.save(universite);
-
+        //si on ajoute @transactional on peut eliminer cette ligne
+        /*universiteRepository.save(universite);*/
 
     }
+
+
+
 }

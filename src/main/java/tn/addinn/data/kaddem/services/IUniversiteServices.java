@@ -1,5 +1,6 @@
 package tn.addinn.data.kaddem.services;
 
+import tn.addinn.data.kaddem.entities.Departement;
 import tn.addinn.data.kaddem.entities.Universite;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface IUniversiteServices {
     void deleteUniversite(Integer id);
 
     void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement);
+
+
 }
