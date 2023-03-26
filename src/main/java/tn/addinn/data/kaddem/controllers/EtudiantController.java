@@ -1,5 +1,6 @@
 package tn.addinn.data.kaddem.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.addinn.data.kaddem.entities.Equipe;
@@ -8,7 +9,7 @@ import tn.addinn.data.kaddem.repositories.EtudiantRepository;
 import tn.addinn.data.kaddem.services.IEtudiantServices;
 
 import java.util.List;
-
+@Tag(name ="test")
 @RestController
 @RequestMapping("etudiant")
 public class EtudiantController {

@@ -1,6 +1,7 @@
 package tn.addinn.data.kaddem.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import tn.addinn.data.kaddem.entities.Contrat;
@@ -55,7 +56,7 @@ public class IContratServiceImp implements IContratServices {
 
         contratRepository.deleteById(id);
     }
-
+    @Scheduled(fixedRate = 6000*5)
     public Contrat affectContratToEtudiant(Contrat ce, String nomE, String prenomE){
         Etudiant e = etudiantRepository.getByNomEAndPrenomE(nomE , prenomE).orElse(null);
         Assert.notNull(e, "etudiant must not be null");
@@ -67,9 +68,9 @@ public class IContratServiceImp implements IContratServices {
         return updateContrat(ce);
     }
 
-    public map<String,float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate){
-        Universite universite = universiteRepository.findUniversiteByIdUniv(idUniv).orElse(null);
+    //public map<String,float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate){
+        //Universite universite = universiteRepository.findUniversiteByIdUniv(idUniv).orElse(null);
 
-    }
+    //}//
 
 }

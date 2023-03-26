@@ -15,5 +15,5 @@ public interface IContratServices {
 
     Contrat affectContratToEtudiant (Contrat ce, String nomE,String prenomE);
 
-    public map<String,float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate);
+    //public map<String,float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate);
 }
