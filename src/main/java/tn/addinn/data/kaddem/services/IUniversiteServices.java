@@ -15,5 +15,7 @@ public interface IUniversiteServices {
 
     void assignUniversiteToDepartement(Integer idUniversite, Integer idDepartement);
 
+    List<Departement> retrieveDepartementsByUniversite(Integer idUniversite);
+
 
 }

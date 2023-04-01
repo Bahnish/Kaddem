@@ -58,6 +58,17 @@ public class IUniversiteServicesImp implements IUniversiteServices{
 
     }
 
+    @Override
+    public List<Departement> retrieveDepartementsByUniversite(Integer idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        Assert.notNull(universite, "universite must not be null.") ;
+
+        return universite.getDepartement();
+
+
+
+    }
+
 
 
 }

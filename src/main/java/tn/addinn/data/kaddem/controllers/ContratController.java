@@ -8,7 +8,9 @@ import tn.addinn.data.kaddem.entities.Etudiant;
 import tn.addinn.data.kaddem.services.IContratServices;
 import tn.addinn.data.kaddem.services.IEtudiantServices;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("contrat")
@@ -41,5 +43,22 @@ public class ContratController {
         iContratServices.updateContrat(contrat);
         return contrat;
     }
+    @PostMapping("/affctation")
+    Contrat affectContratToEtudiant (@RequestBody Contrat ce, @RequestBody String nom ,@RequestBody String prenomE){
+        return iContratServices.affectContratToEtudiant(ce,nom,prenomE);
+    };
+    @GetMapping("/GetMontant")
+    public Map<String,Float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate){
+        return iContratServices.getMontantContartEntreDeuxDate(idUniv,startDate,endDate);
+    };
+    @GetMapping("/GetNbrC")
+    Integer nbContratsValides(Date startDate, Date endDate){
+        return iContratServices.nbContratsValides(startDate,endDate);
+    };
+    @PostMapping("/scheduler")
+
+    String retrieveAndUpdateStatusContrat(){
+        return iContratServices.retrieveAndUpdateStatusContrat();
+    };
 
 }

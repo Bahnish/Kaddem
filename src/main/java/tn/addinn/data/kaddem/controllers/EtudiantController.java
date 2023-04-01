@@ -54,4 +54,9 @@ public class EtudiantController {
 
     }
 
+    @GetMapping("/getEtudDep/{idDep}")
+    public List<Etudiant> getEtudiantsByDepartement(@RequestBody Integer idDepartement) {
+        return iEtudiantServices.getEtudiantsByDepartement(idDepartement);
+    }
+
 }

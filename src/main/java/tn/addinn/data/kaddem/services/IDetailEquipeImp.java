@@ -38,4 +38,6 @@ public class IDetailEquipeImp implements IDetailEquipeServices{
     public void deleteDetailEquipe(Integer id) {
         detailEquipeRepository.deleteById(id);
     }
+
+
 }

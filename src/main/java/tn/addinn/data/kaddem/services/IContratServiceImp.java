@@ -1,19 +1,18 @@
 package tn.addinn.data.kaddem.services;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import tn.addinn.data.kaddem.entities.Contrat;
 import tn.addinn.data.kaddem.entities.Etudiant;
-import tn.addinn.data.kaddem.entities.Universite;
 import tn.addinn.data.kaddem.repositories.ContratRepository;
-import tn.addinn.data.kaddem.repositories.EquipeRepository;
 import tn.addinn.data.kaddem.repositories.EtudiantRepository;
 import tn.addinn.data.kaddem.repositories.UniversiteRepository;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -72,5 +71,65 @@ public class IContratServiceImp implements IContratServices {
         //Universite universite = universiteRepository.findUniversiteByIdUniv(idUniv).orElse(null);
 
     //}//
+
+    @Override
+    public Map<String, Float> getMontantContartEntreDeuxDate(int idUniv, Date startDate, Date endDate) {
+        List<Contrat> listC = contratRepository.findAll();
+        Map<String, Float> mapc = new HashMap<>();
+
+        for (Contrat c : listC) {
+            if (c.getDateFinContrat().before(startDate) || c.getDateDebutContrat().after(endDate)) {
+                listC.remove(c);
+            } else {
+                String specialite = c.getSpecialite().toString();
+                float montant = mapc.getOrDefault(specialite, 0f);
+                mapc.put(specialite, montant);
+            }
+        }
+
+        return mapc;
+    }
+
+
+
+    @Override
+    public Integer nbContratsValides(Date startDate, Date endDate) {
+        List <Contrat> listC = new ArrayList<>();
+        listC.addAll(contratRepository.findAllByArchiveIsFalse());
+        for(Contrat c:listC) {
+            if (c.getDateFinContrat().before(startDate) || c.getDateDebutContrat().after(endDate))
+                listC.remove(c);}
+
+        return listC.size();
+    }
+
+    @Override
+    @Scheduled(cron = "0 0 13 * * ?")
+    public String retrieveAndUpdateStatusContrat() {
+        /*LocalDate date = LocalDate.now();
+        LocalDate datefin =date.plusDays(15);*/
+        Date date = new Date();
+        Date datefin = DateUtils.addDays(date, 15);
+
+        List <Contrat> listC = new ArrayList<>();
+        List <Contrat> listR = new ArrayList<>();
+
+        listC.addAll(contratRepository.findAllByArchiveIsFalse());
+        for(Contrat c:listC) {
+            if (c.getDateFinContrat().before(date) ){
+                c.setArchive(true);
+                contratRepository.save(c);
+            }
+            else if (c.getDateFinContrat().after(date) && c.getDateFinContrat().before(datefin))
+            {listR.add(c); }
+
+
+        }
+
+        return listR.toString();
+
+
+    }
+
 
 }
